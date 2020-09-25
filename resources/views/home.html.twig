@@ -1,0 +1,61 @@
+{% extends session ? "layouts/userdefault.html.twig" : "layouts/default.html.twig" %}
+{% block main %}
+    <section class="presentation padding">
+        <article class="text-center text-justify">
+            <h1>Luxo Have New Offers For You</h1>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab culpa deserunt dignissimos eaque excepturi
+                explicabo, illum incidunt ipsum minus nobis pariatur placeat possimus qui recusandae sapiente voluptate
+                voluptatum! Aut, molestiae?</p>
+        </article>
+    </section>
+    <section class="location d-flex flex-wrap">
+        {% for announcement_location in announcements.location %}
+            <article class="col-md-3">
+            <div class="slider">
+                <div class="glide">
+                    <div data-glide-el="track" class="glide__track">
+                        <ul class="glide__slides">
+                            <li class="glide__slide"><img src="{{ asset('assets/images/studio/1.jpg') }}" alt="La forêt de peupliers" class="rounded"></li>
+                            <li class="glide__slide"><img src="{{ asset('assets/images/villa.jpg') }}" alt="La forêt de peupliers" class="rounded"></li>
+                            <li class="glide__slide"><img src="{{ asset('assets/images/studio/1.jpg') }}" alt="La forêt de peupliers" class="rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <article class="d-flex flex-column text-center">
+                <h3 class="p-2">{{ announcement_location.title }}</h3>
+                <h4 class="p-2">{{ announcement_location.price|number_format(0, '', ' ') }} €</h4>
+                <a class="p-2 btn btn-outline-info" href="{{ path('luxo_announcement_show', {id:announcement_location.id}) }}">en savoir plus</a>
+            </article>
+        </article>
+        {% endfor %}
+
+    </section>
+    <section class="video padding">
+        <h2>New <span>Life</span>,New <span>Beginning</span></h2>
+    </section>
+    <section class="achat d-flex flex-wrap">
+        {% for announcement_achat in announcements.achat %}
+            <article class="col-md-3">
+            <div class="slider">
+                <div class="glide">
+                    <h2></h2>
+                    <div data-glide-el="track" class="glide__track">
+                        <ul class="glide__slides">
+                            <li class="glide__slide"><img src="{{ asset('assets/images/studio/1.jpg') }}" alt="La forêt de peupliers" class="rounded"></li>
+                            <li class="glide__slide"><img src="{{ asset('assets/images/villa.jpg') }}" alt="La forêt de peupliers" class="rounded"></li>
+                            <li class="glide__slide"><img src="{{ asset('assets/images/studio/1.jpg') }}" alt="La forêt de peupliers" class="rounded"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <article class="d-flex flex-column text-center">
+                <h3 class="p-2">{{ announcement_achat.title }}</h3>
+                <h4 class="p-2">{{ announcement_achat.price|number_format(0, '', ' ') }} €</h4>
+                <a class="p-2 btn btn-outline-info" href="{{ path('luxo_announcement_show', {id:announcement_achat.id}) }}">en savoir plus</a>
+            </article>
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

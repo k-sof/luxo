@@ -1,0 +1,23 @@
+#!/usr/bin/env php
+<?php
+
+use Luxo\Console\Application;
+use Luxo\Kernel;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\ErrorHandler\Debug;
+
+set_time_limit(0);
+
+require __DIR__.'/../vendor/autoload.php';
+require __DIR__.'/../bootstrap.php';
+
+if ($_SERVER['APP_DEBUG']) {
+  umask(0000);
+
+  if (class_exists(Debug::class)) {
+    Debug::enable();
+  }
+}
+
+$cli = new Application(new Kernel($_SERVER['APP_ENV'], (bool) $_SERVER['APP_DEBUG']));
+$cli->run(new ArgvInput());

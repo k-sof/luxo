@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d4d034b6e2.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=Lora|Open+Sans&display=swap" rel="stylesheet">
+  <link href="{{ asset('assets/vendors~script.css') }}" rel="stylesheet" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}" />
+  <link rel="stylesheet" href="{{ asset('assets/style.css') }}"/>
+  <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<header>
+  <nav class="row">
+        <a href="{{ path('luxo_home_show') }}" class="col-md-6" ><img src="{{ asset('assets/images/logo.png') }}" alt="logo de luxo" class="logo"></a>
+    <div class="url d-flex justify-content-around">
+          <a  class="col-md-2" href="{{ path('luxo_purchase_show') }}">achat</a>
+          <a class="col-md-2" href="{{ path('luxo_rental_show') }}">location</a>
+          <a class="col-md-2" href="{{ path('luxo_security_register') }}">s'inscrire</a>
+          <a class="col-md-2" href="{{ path('luxo_security_login') }}">connexion</a>
+    </div>
+  </nav>
+</header>
+<main>
+{% block main %}
+{% endblock %}
+</main>
+<footer class="fixed-bottom">
+  <p>all Rights Reserved.</p>
+  <i class="fab fa-facebook-square"></i>
+  <i class="fab fa-twitter-square"></i>
+  <i class="fab fa-linkedin"></i>
+</footer>
+    <script src="{{ asset('assets/vendors~script.js') }}"></script>
+    <script src="{{ asset('assets/script.js') }}"></script>
+</body>
+</html>

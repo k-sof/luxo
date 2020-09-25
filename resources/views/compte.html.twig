@@ -1,0 +1,11 @@
+{% extends 'layouts/userdefault.html.twig'%}
+{% block main %}
+    <div class="container mt-4 bg-light rounded p-4">
+        {{ form_start(form) }}
+        <h1>Mon Compte</h1>
+        {{ form_widget(form) }}
+        <input type="submit"/>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

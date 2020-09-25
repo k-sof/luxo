@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: provision/docker/php/Dockerfile
+      target: luxo_php
+      args:
+        APP_ENV: dev
+    healthcheck:
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+    volumes:
+      - ./:/srv/app:rw,cached
+      - ./provision/docker/php/conf.d/custom.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
+    depends_on:
+      - db
+
+  nginx:
+    build:
+      context: .
+      dockerfile: provision/docker/nginx/Dockerfile
+      target: luxo_nginx
+    depends_on:
+      - php
+    volumes:
+      - ./public:/srv/app/public:ro
+    ports:
+      - "80:80"
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - "8080:80"

@@ -1,0 +1,13 @@
+{% extends 'layouts/userdefault.html.twig'%}
+{% block main %}
+    <div class="container_from">
+        {{ form_start(form) }}
+        <div class="my-custom-class-for-errors">
+            {{ form_errors(form) }}
+        </div>
+        <h1>Nouvelle Annonce</h1>
+        {{ form_widget(form) }}
+        <input type="submit"/>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

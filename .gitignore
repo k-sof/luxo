@@ -1,0 +1,12 @@
+node_modules
+public/assets
+.idea
+/vendor/
+.php_cs.cache
+var/*
+storage/sessions/*
+.env
+.env.local.php
+
+.terraform
+terraform.*
