@@ -125,6 +125,12 @@ class Announcement
      */
     private $sold;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $diectory;
+
     public function __construct()
     {
         $this->date = new \DateTime();
@@ -467,6 +473,24 @@ class Announcement
     {
         $this->bedroom = $bedroom;
 
+        return $this;
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getDiectory()
+    {
+        return $this->diectory;
+    }
+
+    /**
+     * @var string $diectory
+     * @return Announcement
+     */
+    public function setDiectory($diectory)
+    {
+        $this->diectory = $diectory;
         return $this;
     }
 }

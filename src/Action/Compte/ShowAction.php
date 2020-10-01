@@ -12,6 +12,8 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
@@ -25,7 +27,7 @@ class ShowAction extends Action
      * @param UserRepository $userRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function __invoke(FormFactory $formFactory, TokenStorage $tokenStorage, RequestStack $requestStack, UserRepository $userRepository)
+    public function __invoke(FormFactory $formFactory, TokenStorage $tokenStorage, RequestStack $requestStack, UserRepository $userRepository,  Mailer $mailer)
     {
         if(!$tokenStorage->getToken()) {
             throw new Exception("Veuillez vous connecter");
@@ -34,6 +36,7 @@ class ShowAction extends Action
             ->getForm();
         $form->handleRequest($requestStack->getCurrentRequest());
         if ($form->isSubmitted() && $form->isValid()) {
+
             $userRepository->updateUser($form->getData());
             return $this->redirectToRoute('luxo_compte_show');
         }

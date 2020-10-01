@@ -26,7 +26,6 @@ class AnnouncementRepository extends EntityRepository
         $queryBuilder = $this->createQueryBuilder('a');
         $query = $queryBuilder
             ->where('a.type = 0')
-            ->andWhere('a.sold = 0')
             ->addOrderBy('a.date', 'DESC')
             ->getQuery();
 
@@ -37,8 +36,8 @@ class AnnouncementRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('a');
         $query = $queryBuilder
-            ->Where('a.sold = 0')
-            ->andwhere('a.type = 1')
+
+            ->where('a.type = 1')
             ->addOrderBy('a.date', 'DESC')
             ->getQuery();
 
@@ -52,7 +51,6 @@ class AnnouncementRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('a');
         $query = $queryBuilder
-            ->where('a.sold = 0')
             ->andWhere('a.type = 0')
             ->addOrderBy('a.date', 'DESC')
             ->setMaxResults(3)
@@ -68,7 +66,7 @@ class AnnouncementRepository extends EntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('a');
         $query = $queryBuilder
-            ->where('a.sold = 0')
+
             ->andWhere('a.type = 1')
             ->addOrderBy('a.date', 'DESC')
             ->setMaxResults(3)
@@ -85,13 +83,7 @@ class AnnouncementRepository extends EntityRepository
             ->getQuery();
         return $query->getResult();
     }
-    public function test()
-    {
-        $queryBuilder = $this->createQueryBuilder('a');
-        $query = $queryBuilder
-            ->getQuery();
-        return $query->getResult();
-    }
+
     public function newAnnouncement($data)
     {
         $announcement = new Announcement();
@@ -99,7 +91,6 @@ class AnnouncementRepository extends EntityRepository
         $uow = $this->_em->getUnitOfWork();
         $uow->computeChangeSets();
         $changeSet = $uow->getEntityChangeSet($announcement);
-        dd($uow->getEntityChangeSet($data));
         if ($changeSet) {
             $uow->recomputeSingleEntityChangeSet(
                 $this->_em->getClassMetadata(Announcement::class),
@@ -139,7 +130,7 @@ class AnnouncementRepository extends EntityRepository
 
     public function edit($announcement)
     {
-        
+
         $uow = $this->_em->getUnitOfWork();
         $uow->computeChangeSets();
         $changeSet = $uow->getEntityChangeSet($announcement);

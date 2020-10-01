@@ -38,6 +38,9 @@ use Symfony\Component\HttpFoundation\RequestMatcher;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Transport\Transports;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing\Loader\AnnotationDirectoryLoader;
 use Symfony\Component\Routing\Loader\ContainerLoader;
@@ -90,6 +93,7 @@ class FrameworkExtension extends AbstractExtension
         $this->configureValidator($container);
         $this->configureTranslation($container);
         $this->configureSecurity($container);
+        $this->configureMailer($container, $configs['mailer']);
     }
 
     public function getAlias()
@@ -478,5 +482,27 @@ class FrameworkExtension extends AbstractExtension
             ->addMethodCall('setEventDispatcher', [new Reference(EventDispatcher::class)])
             ->setPublic(true)
         ;
+    }
+
+    private function configureMailer(ContainerBuilder $container, array $config)
+    {
+        $container
+            ->register(Transport::class, Transport::class)
+            ->setFactory([Transport::class, 'fromDsn'])
+            ->setArguments([$config['dsn']])
+        ;
+
+        $container
+            ->register(Transports::class, Transports::class)
+            ->setArguments(
+                [[new Reference(Transport::class), 'getDefaultFactories']]
+            );
+
+        $container
+            ->register(Mailer::class, Mailer::class)
+            ->setArguments([
+                new Reference(Transports::class),
+            ])
+        ->setPublic(true);
     }
 }

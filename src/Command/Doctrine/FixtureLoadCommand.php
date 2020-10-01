@@ -60,7 +60,7 @@ class FixtureLoadCommand extends Command
                 ],
             ],
             \Luxo\Entity\Announcement::class => [
-                'announcement_{1..3}' => [
+                'announcement_{1..9}' => [
                     'title' => '<username()>',
                     'description' => '<text()>',
                     'city' => '<city()>',

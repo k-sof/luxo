@@ -5,7 +5,6 @@ namespace Luxo\Form;
 
 
 use Luxo\Entity\Announcement;
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AddAnnouncement extends AbstractType
+class AddAnnouncementForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options){
 
@@ -90,5 +89,4 @@ class AddAnnouncement extends AbstractType
         }
         return $choice;
     }
-
 }

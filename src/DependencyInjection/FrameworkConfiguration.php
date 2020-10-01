@@ -21,6 +21,7 @@ class FrameworkConfiguration implements ConfigurationInterface
               ->append($this->addRouterConfiguration())
               ->append($this->addDoctrineConfiguration())
               ->append($this->addTwigConfiguration())
+              ->append($this->addMailerConfiguration())
           ->end()
         ;
 
@@ -123,5 +124,21 @@ class FrameworkConfiguration implements ConfigurationInterface
                 ->arrayNode('firewalls')->isRequired()->scalarPrototype()->end()
             ->end()
         ;
+
+        return $treeBuilder->getRootNode();
+    }
+
+    private function addMailerConfiguration()
+    {
+        $treeBuilder = new TreeBuilder('mailer');
+
+        $treeBuilder->getRootNode()
+            ->isRequired()
+            ->children()
+                ->scalarNode('dsn')->isRequired()->end()
+            ->end()
+        ;
+
+        return $treeBuilder->getRootNode();
     }
 }

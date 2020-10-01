@@ -6,7 +6,7 @@ namespace Luxo\Action\Newannouncement;
 
 use Luxo\Action\Action;
 use Luxo\Entity\Announcement;
-use Luxo\Form\AddAnnouncement;
+use Luxo\Form\AddAnnouncementForm;
 use Luxo\Repository\AnnouncementRepository;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Form\FormFactory;
@@ -30,7 +30,7 @@ class ShowAction extends Action
             throw new Exception("Veuillez vous connecter");
         }
         $announcement = new Announcement();
-        $form = $formFactory->createBuilder(AddAnnouncement::class, $announcement)
+        $form = $formFactory->createBuilder(AddAnnouncementForm::class, $announcement)
             ->getForm();
         $form->handleRequest($requestStack->getCurrentRequest());
         if($form->isSubmitted() && $form->isValid()){

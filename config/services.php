@@ -20,6 +20,9 @@ return function (ContainerConfigurator $configurator) {
         'session' => [
             'enabled' => true,
         ],
+        'mailer' => [
+            'dsn' => '%env(MAILER_DSN)%',
+        ],
     ]);
 
     $services = $configurator

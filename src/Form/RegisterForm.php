@@ -28,7 +28,7 @@ class RegisterForm extends AbstractType
             ->add('birth', DateType::class, [
                 'label' => 'Date De Naissance',
                 'attr' => ['class' => 'birth'],
-                
+
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot De Passe',
@@ -41,5 +41,10 @@ class RegisterForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+    }
+
+    public function getEmail()
+    {
+
     }
 }

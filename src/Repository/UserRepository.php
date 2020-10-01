@@ -31,13 +31,8 @@ class UserRepository extends EntityRepository
      */
     public function findByEmail($email)
     {
-        $queryBuilder = $this->createQueryBuilder('u');
 
-        $query = $queryBuilder
-            ->where($queryBuilder->expr()->eq('u.email', $email))
-            ->getQuery();
-
-        return $query->getSingleResult();
+        return $this->findBy(['email' => $email]);
     }
 
     /**
@@ -77,6 +72,7 @@ class UserRepository extends EntityRepository
     {
         return $this->find($id);
     }
+
 
 }
 

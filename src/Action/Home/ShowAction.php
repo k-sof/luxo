@@ -5,6 +5,8 @@ namespace Luxo\Action\Home;
 use Luxo\Action\Action;
 use Luxo\Repository\AnnouncementRepository;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
@@ -22,6 +24,7 @@ class ShowAction extends Action
      */
     public function __invoke(AnnouncementRepository $announcementRepository, TokenStorage $tokenStorage, Session $session)
     {
+
         return $this->render('home.html.twig', [
             'announcements' =>[
                 'location' => $announcementRepository->findByLocationWithImages(),

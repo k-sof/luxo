@@ -2,6 +2,7 @@
 
 namespace Luxo\Action;
 
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGenerator;
@@ -17,8 +18,10 @@ abstract class Action
      */
     private $urlGenerator;
 
+
     public function __construct(\Twig\Environment $twig, UrlGenerator $urlGenerator)
     {
+
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
     }
@@ -70,4 +73,5 @@ abstract class Action
             $this->urlGenerator->generate($name, $parameters, UrlGenerator::ABSOLUTE_URL)
         );
     }
+
 }

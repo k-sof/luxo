@@ -16,7 +16,7 @@ class User implements UserInterface
     /**
      * @var int
      * @ORM\Id
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer" , nullable=false)
      * @ORM\GeneratedValue()
      */
     private $id;
@@ -29,33 +29,44 @@ class User implements UserInterface
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $firstName;
 
     /**
-     * @var
-     * @ORM\Column(type="string")
+     * @var string
+     * @ORM\Column(type="string", nullable=false)
      */
     private $lastName;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $email;
 
     /**
      * @var \DateTimeInterface
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=false)
      */
     private $birth;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=false)
      */
     private $password;
+    /**
+     * @var string
+     */
+    private $confirmation;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $token;
+
 
     public function __construct()
     {
@@ -227,4 +238,36 @@ class User implements UserInterface
     {
         return null;
     }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param $token
+     * @return User
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+    public function getConfirmation()
+    {
+       return $this->confirmation;
+    }
+    public function setConfirmation($confirmation)
+    {
+        $this->confirmation = $confirmation;
+
+        return $this;
+    }
+
+
+
 }

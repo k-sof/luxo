@@ -63,7 +63,6 @@ class LoginAction extends Action
 
         return $this->render('login.html.twig', [
             'form' => $form->createView(),
-
         ]);
     }
 }

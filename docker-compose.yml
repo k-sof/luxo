@@ -18,6 +18,7 @@ services:
       - ./provision/docker/php/conf.d/custom.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
     depends_on:
       - db
+      - mailer
 
   nginx:
     build:
@@ -30,6 +31,7 @@ services:
       - ./public:/srv/app/public:ro
     ports:
       - "80:80"
+
   db:
     image: mariadb:latest
     environment:
@@ -43,3 +45,9 @@ services:
     restart: always
     ports:
       - "8080:80"
+
+  mailer:
+    image: maildev/maildev
+    ports:
+      - "1080:80"
+      - "1025:25"
