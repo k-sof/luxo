@@ -3,6 +3,7 @@
 namespace Luxo\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass="Luxo\Repository\ImageRepository")
@@ -29,6 +30,11 @@ class Image
      * @ORM\Column(type="string")
      */
     private $path;
+
+    /**
+     * @var UploadedFile
+     */
+    private $file;
 
     /**
      * @return string
@@ -69,4 +75,33 @@ class Image
 
         return $this;
     }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile(): ?UploadedFile
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     *
+     * @return self
+     */
+    public function setFile(UploadedFile $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
 }

@@ -1,0 +1,23 @@
+{% extends 'Layouts/userdefault.html.twig'%}
+{% block title %}liste mes annonce{% endblock %}
+{% block main %}
+<div class="container mt-4 bg-light rounded p-4 text-center">
+    <h2>Gérer les biens</h2>
+    <table class="table w-75 mt-4">
+        <tbody>
+            <tr>
+                <td scope="col">Titre</td>
+                <td scope="col">Action</td>
+            </tr>
+            {% for list_announcement in list_announcements %}
+                <tr>
+                    <td scope="rox"><a href="{{ path ('luxo_announcement_detail',{id:list_announcement.id}) }}">{{ list_announcement.title}}</a></td>
+                    <td><a href="{{ path('luxo_announcement_edit', {id:list_announcement.id}) }}" class ="btn btn-secondary">Modifier</a>
+                    <a href="{{ path('luxo_announcement_delete', {id:list_announcement.id}) }}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('luxo_announcement_add') }}" class="d-inline">Crée une annonce</a>
+</div>
+{% endblock %}

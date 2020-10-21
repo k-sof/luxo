@@ -8,14 +8,9 @@ services:
       target: luxo_php
       args:
         APP_ENV: dev
-    healthcheck:
-      interval: 10s
-      timeout: 3s
-      retries: 3
-      start_period: 30s
     volumes:
-      - ./:/srv/app:rw,cached
-      - ./provision/docker/php/conf.d/custom.dev.ini/:/usr/local/etc/php/conf.d/api-platform.ini
+      - ./:/var/www/app:rw,cached
+      - ./provision/docker/php/conf.d/custom.dev.ini/:/usr/local/etc/php/conf.d/custom.ini
     depends_on:
       - db
       - mailer
@@ -28,7 +23,7 @@ services:
     depends_on:
       - php
     volumes:
-      - ./public:/srv/app/public:ro
+      - ./public:/var/www/app/public:ro
     ports:
       - "80:80"
 
@@ -51,3 +46,10 @@ services:
     ports:
       - "1080:80"
       - "1025:25"
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      # Exposes BLACKFIRE_SERVER_* environment variables from the host
+      BLACKFIRE_SERVER_ID: 65d7fe72-fca9-4a3c-b068-e895200d89b7
+      BLACKFIRE_SERVER_TOKEN: 01a8a4427541e4a59abd72561fd4e4bb55c69bcf4d134829ff5cb6335f9a46c7

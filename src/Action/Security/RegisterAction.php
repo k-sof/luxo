@@ -55,7 +55,7 @@ class RegisterAction extends Action
 
            }
 
-        return $this->render('register.html.twig', [
+        return $this->render('User/Register.html.twig', [
             'form' => $form->createView(),
         ]);
     }

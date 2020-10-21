@@ -24,7 +24,6 @@ class ShowAction extends Action
      */
     public function __invoke(AnnouncementRepository $announcementRepository, TokenStorage $tokenStorage, Session $session)
     {
-
         return $this->render('home.html.twig', [
             'announcements' =>[
                 'location' => $announcementRepository->findByLocationWithImages(),

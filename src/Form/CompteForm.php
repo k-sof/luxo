@@ -26,11 +26,6 @@ class CompteForm extends AbstractType
               ->add('email', EmailType::class, [
                   'label' => 'Email',
               ])
-              ->add('password', PasswordType::class, [
-                  'required'   => false,
-                  'empty_data' => '',
-                  'label' => 'Mot De Passe'
-              ])
         ;
     }
 

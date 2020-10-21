@@ -1,0 +1,11 @@
+{% extends 'Layouts/default.html.twig' %}
+{% block title %}Réinitialisation{% endblock %}
+{% block main %}
+<div class="container mt-4 bg-light rounded p-4">
+    {{ form_start(form) }}
+    <h1>reinitialisation de mot de passe</h1>
+    {{ form_widget(form) }}
+    <button class="btn btn-primary">Vérifer</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

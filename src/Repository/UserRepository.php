@@ -73,6 +73,11 @@ class UserRepository extends EntityRepository
         return $this->find($id);
     }
 
+    public function refresh(User $user)
+    {
+        $this->em->refresh($user);
+    }
+
 
 }
 

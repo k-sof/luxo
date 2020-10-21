@@ -31,17 +31,18 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('script', './assets/js/script.js')
+    .addEntry('newAnnouncement', './assets/js/newAnnouncement.js')
     //.addEntry('css', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
     .addStyleEntry('style', './assets/css/style.css')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+    //.splitEntryChunks()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    //.enableSingleRuntimeChunk()
-    .disableSingleRuntimeChunk()
+    .enableSingleRuntimeChunk()
+    //.disableSingleRuntimeChunk()
     .enablePostCssLoader()
 
     /*
@@ -76,7 +77,11 @@ Encore
 
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
-
+.autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+    })
 // uncomment if you use API Platform Admin (composer require api-admin)
 //.enableReactPreset()
 //.addEntry('admin', './assets/js/admin.js')

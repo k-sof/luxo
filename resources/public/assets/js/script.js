@@ -1,9 +1,11 @@
-import "jquery/dist/jquery";
+
 import "@glidejs/glide/dist/css/glide.core.css"
 import "@glidejs/glide/dist/css/glide.theme.css"
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Glide from "@glidejs/glide";
+
+
 
 const slides = document.querySelectorAll('.glide')
 const conf = {
@@ -15,10 +17,10 @@ const conf = {
             perView:3
         },
         760: {
-            perView: 3
+            perView: 1
         },
         480: {
-            perView:3
+            perView:1
         }
     }
 }

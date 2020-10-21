@@ -27,6 +27,7 @@ class AuthenticationListener implements EventSubscriberInterface
 
     public function onAuthenticationSuccess(AuthenticationSuccessEvent $event)
     {
+
         $this->tokenStorage->setToken($event->getAuthenticationToken());
         $this->session->set('token', $this->tokenStorage->getToken());
     }

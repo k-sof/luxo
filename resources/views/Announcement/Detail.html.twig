@@ -1,0 +1,49 @@
+{% extends 'Layouts/default.html.twig' %}
+{% block title %}{{ announcement.title }}{% endblock %}
+{% block main %}
+    <div class="bg-light rounded p-4 container mt-4 text-center">
+        <section class="d-flex" >
+            <article class="mr-auto p-2 w-50">
+            <div class="glide">
+                <div data-glide-el="track" class="glide__track">
+                    <ul class="glide__slides">
+                        <li class="glide__slide"><img src="{{ asset('assets/images/studio/1.jpg') }}"
+                                                    alt="La forêt de peupliers"></li>
+                        <li class="glide__slide"><img src="{{ asset('assets/images/villa.jpg') }}"
+                                                    alt="La forêt de peupliers"></li>
+                        <li class="glide__slide"><img src="{{ asset('assets/images/studio/1.jpg') }}"
+                                                    alt="La forêt de peupliers"></li>
+                    </ul>
+                </div>
+            </div>
+            </article>
+            <article class="mx-5 p-2">
+                    <h2>{{announcement.title}}</h2>
+                    <span>{{ announcement.city}} ({{announcement.zipcode}})</span>
+                    <h4 class="price">{{announcement.price | number_format(0, '', ' ')}} €</h4>
+                    <a class="p-2 btn btn-outline-info" href="#">Contact L'agence</a>
+            </article>
+        </section>
+    <div>{{announcement.description | nl2br}}</div>
+    <table class="table w-50 mt-4">
+        <thead class="bg-secondary">
+            <tr>
+                <th scope="col">area</th>
+                <th scope="col">room</th>
+                <th scope="col">bedroom</th>
+                <th scope="col">floor</th>
+                <th scope="col">energy</th>
+            </tr>
+        </thead>
+        <tboby>
+            <tr>
+                <td scope="row">{{announcement.area}} m²</td>
+                <td>{{announcement.room}}</td>
+                <td>{{announcement.bedroom}}</td>
+                <td>{{announcement.floor}}</td>
+                <td>{{announcement.energystring}}</td>
+            </tr>
+        </tboby>
+    </table>
+</div>
+{% endblock %}

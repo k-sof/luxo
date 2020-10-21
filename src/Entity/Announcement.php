@@ -11,9 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Announcement
 {
-    const TYPE_AD = [ 'Studio', 'House', 'Apartment', 'Villa'];
-    const CAT_AD = ['buying', 'Rental'];
-    const ENERGY_AD = ['gas', 'electric'];
+    const TYPES = [ 'studio', 'house', 'appartment', 'villa'];
+    const CATEGORIES = ['buying', 'Rental'];
+    const ENERGIES = ['gas', 'electric'];
 
     /**
      * @var int
@@ -32,11 +32,11 @@ class Announcement
 
     /**
      * @var Image[]
-     * @ORM\ManyToMany(targetEntity="Image")
+     * @ORM\ManyToMany(targetEntity="Image", cascade={"persist","remove"})
      * @ORM\JoinTable(
      *     name="announcement_has_images",
      *     joinColumns={@ORM\JoinColumn(name="announcement_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id")}
+     *     inverseJoinColumns={@ORM\JoinColumn(name="image_id", referencedColumnName="id", onDelete="CASCADE")}
      * )
      */
     private $images;
@@ -124,12 +124,6 @@ class Announcement
      * @ORM\Column(type="boolean")
      */
     private $sold;
-
-    /**
-     * @var string
-     * @ORM\Column(type="string", nullable=true)
-     */
-    private $diectory;
 
     public function __construct()
     {
@@ -265,9 +259,9 @@ class Announcement
         return $this;
     }
 
-    public function getTypeString()
+    public function getTypeName()
     {
-        return self::TYPE_AD[$this->type];
+        return self::TYPES[$this->type];
     }
 
     /**
@@ -340,7 +334,7 @@ class Announcement
 
     public function getEnergyString()
     {
-        return self::ENERGY_AD[$this->energy];
+        return self::ENERGIES[$this->energy];
     }
 
     /**
@@ -442,7 +436,7 @@ class Announcement
 
     public function addImage(Image $image)
     {
-        $this->images->set($image->getPath(), $image);
+        $this->images->add($image);
 
         return $this;
     }
@@ -459,7 +453,7 @@ class Announcement
     /**
      * @return int|null
      */
-    public function getBedroom(): int
+    public function getBedroom(): ?int
     {
         return $this->bedroom;
     }
@@ -476,21 +470,4 @@ class Announcement
         return $this;
     }
 
-    /**
-     * @return string | null
-     */
-    public function getDiectory()
-    {
-        return $this->diectory;
-    }
-
-    /**
-     * @var string $diectory
-     * @return Announcement
-     */
-    public function setDiectory($diectory)
-    {
-        $this->diectory = $diectory;
-        return $this;
-    }
 }

@@ -1,0 +1,47 @@
+{% extends 'Layouts/userdefault.html.twig'%}
+{% block title %}crée une annonce{% endblock %}
+{% block main %}
+
+    <div class="container mt-4 bg-light rounded p-2">
+        {{ form_start(form) }}
+        <h1>Edit le bien</h1>
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">{{ form_row(form.title) }}</div>
+            <div class="col-md-4">{{ form_row(form.area) }}</div>
+            <div class="col-md-4">{{ form_row(form.price) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">{{ form_row(form.room) }}</div>
+            <div class="col-md-2">{{ form_row(form.bedroom) }}</div>
+            <div class="col-md-2">{{ form_row(form.energy) }}</div>
+            <div class="col-md-2">{{ form_row(form.floor) }}</div>
+            <div class="col-md-2">{{ form_row(form.type) }}</div>
+            <div class="col-md-2">{{ form_row(form.category) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">{{ form_row(form.description) }}</div>
+            <div class="col-md-2">{{ form_row(form.city) }}</div>
+            <div class="col-md-2">{{ form_row(form.zipCode) }}</div>
+            <div class="col-md-1 mb-3">{{ form_row(form.sold) }}</div>
+        </div>
+        <div class="row">
+            <ul class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+            {% for image in form.images %}
+                <li>{{ form_row(image.file) }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+
+        <button class="btn btn-primary">Crée</button>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
+

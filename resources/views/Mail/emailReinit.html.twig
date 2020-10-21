@@ -1,0 +1,6 @@
+<h1>Luxo</h1>
+
+<h3>Cher. {{ user.firstName }} {{ user.lastName }} ,</h3>
+<p>Votre demande de réinitialisation le mot de passe veuillez <a href="{{ url('luxo_reinitialisation_reset',{token:user.token, id:user.id }) }}">click ici</a></p>
+<p></p>
+<p>Toute l'équipe de luxo vous remercie de votre confiance !</p>

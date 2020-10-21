@@ -43,6 +43,8 @@
     "bootstrap": "^4.5.0",
     "flexboxgrid": "^6.3.1",
     "jquery": "^3.5.1",
-    "query": "^0.2.0"
+    "popper.js": "^1.16.1",
+    "query": "^0.2.0",
+    "symfony-collection": "github:ninsuo/symfony-collection"
   }
 }

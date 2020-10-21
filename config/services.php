@@ -11,7 +11,7 @@ return function (ContainerConfigurator $configurator) {
             'annotation' => true,
         ],
         'doctrine' => [
-            'dsn' => '%env(DATABASE_DSN)%',
+            'dsn' => 'sqlite:///%kernel.project_dir%/var/database/db.sqlite',
             'entities_dir' => '%kernel.project_dir%/src/Entity',
         ],
         'twig' => [

@@ -1,0 +1,30 @@
+{% extends 'Layouts/userdefault.html.twig' %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block title %}crée une annonce{% endblock %}
+{% block headerjavascript %}
+    <script src="{{ asset('assets/newAnnouncement.js') }}"></script>
+{% endblock %}
+{% block collection_widget %}
+    {% apply spaceless %}
+        {% if prototype is defined %}
+            {% set attr = attr|merge({'data-prototype': form_row(prototype)}) %}
+            {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
+        {% endif %}
+        {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
+        {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
+        {% set attr = attr|merge({'data-name-prefix': full_name}) %}
+        {{ block('form_widget') }}
+    {% endapply %}
+{% endblock collection_widget %}
+{% block main %}
+<div class="container mt-4 bg-light rounded p-2">
+    {{ form(form) }}
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}
+
